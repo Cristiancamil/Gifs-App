@@ -1,49 +1,48 @@
+import { useState } from "react"
+import CustomHeader from "./components/CustomHeader"
+import SearchBar from "./components/SearchBar"
+import GifList from "./gifs/components/GifList"
+import PreviousSearches from "./gifs/components/PreviousSearches"
 import { mockGifs } from "./mock-data/gifs.mock"
+
+
 
 /**
 * COMPONENTE PRINCIPAL GifsApp
 * 
  */
 export const GifsApp = () => {
+
+  const [previousTerms, setPriviousTerms] = useState(['Dragon Ball'])
+
+  const handleTermClicked = (term: string) => {
+    console.log({ term });
+  }
+
+  const handleSearch = (query: string) => {
+    console.log({ query });
+  }
+
   return (
     <>
       {/* Header */}
-      <div className="content-center">
-        <h1>Buscador de Gifs</h1>
-        <p>Descubre y comparte el Gif</p>
-      </div>
+      <CustomHeader title="Buscador de gif" description="Descubre y comparte el Gif" />
 
       {/* Search */}
-      <div className="search-container">
-        <input type="text" placeholder="Buscar gifs" />
-        <button>Buscar</button>
-      </div>
+      <SearchBar
+        placeHolder="Buscar"
+        textButton="Buscar"
+        onQuery={handleSearch}
+      />
 
       {/* Búsquedas previas */}
-      <div className="previous-searches">
-        <h2>Búsquedas previas</h2>
-        <ul className="previous-searches-list">
-          <li>Goku</li>
-          <li>Vegeta</li>
-          <li>Tanjiro</li>
-          <li>Saitama</li>
-        </ul>
-      </div>
+      <PreviousSearches
+        searches={previousTerms}
+        onLabelClick={handleTermClicked}
+      />
 
       {/* Gifs */}
-      <div className="gifs-container">
-        {
-          mockGifs.map((gif) => (
-            <div key={gif.id} className="gif-card">
-              <img src={gif.url} alt={gif.title} />
-              <h3>{gif.title}</h3>
-              <p>
-                {gif.width}x{gif.height} (1.5mb)
-              </p>
-            </div>
-          ))
-        }
-      </div>
+      <GifList gifs={mockGifs} />
     </>
   )
 }
