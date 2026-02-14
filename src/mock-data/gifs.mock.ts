@@ -1,12 +1,25 @@
-// Interfaz de como se deben recibir los datos
+
+/**
+ * Representa la estructura de un objeto GIF dentro de la aplicación.
+ *
+ * Este tipo define cómo deben recibirse y manejarse los datos
+ * relacionados con cada GIF.
+ */
 export interface Gif {
-  id: string;
-  title: string;
-  url: string;
-  width: number;
-  height: number;
+  id: string;      // Identificador único del GIF
+  title: string;   // Título descriptivo del GIF
+  url: string;     // URL donde se encuentra alojado el GIF
+  width: number;   // Ancho en píxeles
+  height: number;  // Alto en píxeles
 }
 
+
+/**
+ * Datos simulados (mock) utilizados para pruebas locales.
+ *
+ * Se utilizan mientras no exista conexión real a una API externa.
+ * Permiten desarrollar y probar la interfaz sin depender del backend.
+ */
 export const mockGifs: Gif[] = [
   {
     id: '1',
